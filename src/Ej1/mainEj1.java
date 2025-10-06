@@ -1,10 +1,7 @@
 package Ej1;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class mainEj1 {
@@ -53,8 +50,42 @@ public class mainEj1 {
             scanner.nextLine();
             switch (opcion){
                 case 1:
+                    System.out.println("Nombre del autor");
+                    String nombre= scanner.nextLine();
+                    System.out.println("fecha del autor");
+                    int fecha= scanner.nextInt();
+                    scanner.nextLine();
+                    Autor autor=new Autor(nombre, fecha);
+                    System.out.println("titulo");
+                    String titulo= scanner.nextLine();
+                    System.out.println("año");
+                    int año=scanner.nextInt();
+                    try {
+                        PreparedStatement preparedStatement= connection.prepareStatement("INSERT INTO objetos.libros (titulo, autor, año_publicacion) VALUES(?, ROW(?, ?), ?)");
+                        preparedStatement.setString(1,titulo);
+                        preparedStatement.setString(2,autor.getNombre());
+                        preparedStatement.setInt(3,autor.getFecha());
+                        preparedStatement.setInt(4,año);
+                        preparedStatement.executeUpdate();
+                        System.out.println("insertado");
+                    } catch (SQLException e) {
+                        System.out.println("error en la inseccion");
+                    }
                     break;
                 case 2:
+                    String sql = "SELECT l.titulo, a.nombre_autor, a.fechaNacimiento, l.año_publicacion " +
+                            "FROM objetos.libros l " +
+                            "JOIN objetos.autor a ON l.autor_id = a.id";
+                    PreparedStatement preparedStatement= connection.prepareStatement(sql);
+                    ResultSet resultSet=preparedStatement.executeQuery();
+                    while (resultSet.next()){
+                        String titulo1 = resultSet.getString("titulo");
+                        String nombreAutor = resultSet.getString("nombre_autor");
+                        int fechaNacimiento = resultSet.getInt("fechaNacimiento");
+                        int añoPublicacion = resultSet.getInt("anio_publicacion");
+                        System.out.println(titulo1 + nombreAutor + fechaNacimiento + añoPublicacion);
+                    }
+
                     break;
                 case 3:
                     break;
