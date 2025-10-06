@@ -73,17 +73,27 @@ public class mainEj1 {
                     }
                     break;
                 case 2:
-                    String sql = "SELECT l.titulo, a.nombre_autor, a.fechaNacimiento, l.año_publicacion " +
-                            "FROM objetos.libros l " +
-                            "JOIN objetos.autor a ON l.autor_id = a.id";
-                    PreparedStatement preparedStatement= connection.prepareStatement(sql);
-                    ResultSet resultSet=preparedStatement.executeQuery();
-                    while (resultSet.next()){
+                    String sql = """
+                        SELECT titulo, 
+                        (autor).nombre_autor AS nombre_autor,
+                        (autor).fechaNacimiento AS fechaNacimiento,
+                        año_publicacion 
+                        FROM objetos.libros
+                        """;
+
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    while (resultSet.next()) {
                         String titulo1 = resultSet.getString("titulo");
                         String nombreAutor = resultSet.getString("nombre_autor");
-                        int fechaNacimiento = resultSet.getInt("fechaNacimiento");
-                        int añoPublicacion = resultSet.getInt("anio_publicacion");
-                        System.out.println(titulo1 + nombreAutor + fechaNacimiento + añoPublicacion);
+                        String fechaNacimiento = resultSet.getString("fechanacimiento"); // Es VARCHAR, no int
+                        int añoPublicacion = resultSet.getInt("año_publicacion");
+
+                        System.out.println("Título: " + titulo1 +
+                                " | Autor: " + nombreAutor +
+                                " | Nacimiento: " + fechaNacimiento +
+                                " | Año publicación: " + añoPublicacion);
                     }
 
                     break;
