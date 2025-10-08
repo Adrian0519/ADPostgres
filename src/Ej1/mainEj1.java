@@ -97,9 +97,21 @@ public class mainEj1 {
                 case 3:
                     break;
                 case 4:
+                    String sqlDelete="Delete from objetos.libros where id = ?";
+                    System.out.println("Dime el nombre del autor y eliminaremos el autor y libros");
+                    int autorID= scanner.nextInt();
+                    PreparedStatement preparedStatement1=connection2.prepareStatement(sqlDelete);
+                    preparedStatement1.setInt(1,autorID);
+                    int resultado=preparedStatement1.executeUpdate();
+                    if (resultado!=0){
+                        System.out.println("eliminado");
+                    }else {
+                        System.out.println("No se encontro la eliminacion");
+                    }
                     break;
                 case 0:
                     System.out.println("adios");
+                    connection2.close();
                     break;
                 default:
                     System.out.println("numero incorrecto");
