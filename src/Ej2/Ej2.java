@@ -1,0 +1,51 @@
+package Ej2;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Ej2 {
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        String user = "postgres";
+        String password = "abc123.";
+        String url = "jdbc:postgresql://localhost:5432/f1";
+        try {
+            Connection connection= DriverManager.getConnection(url,user,password);
+            System.out.println("empecemos con la f1");
+            int opcion=10000;
+            while (opcion!=0){
+                System.out.println("1 Listar todos los equipos y sus directores\n" +
+                        "2 Obtener los pilotos y sus equipos actuales\n" +
+                        "3 Resultados de una carrera específica\n" +
+                        "4 Piloto más viejo\n" +
+                        "5 Número de victorias por equipo\n" +
+                        "0 Cerrar");
+                opcion= scanner.nextInt();
+                scanner.nextLine();
+                switch (opcion){
+                    case 0:
+                        System.out.println("adios");
+                        connection.close();
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("error en los datos insertados");
+                        break;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al conectar");
+        }
+    }
+}
