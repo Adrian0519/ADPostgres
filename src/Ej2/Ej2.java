@@ -51,6 +51,11 @@ public class Ej2 {
                         }
                         break;
                     case 3:
+                        System.out.println("dime el pais del premio");
+                        String nombre= scanner.nextLine();
+                        String consulta="Select carreras.carrera_id as \"carreras\",resultado.carrera_id as \"resultado""
+                            +"from resultados "
+                            +"INNER JOIN carreras on carreras.carrera_id=resultado.carrera_id where carreras.pais=()";
                         break;
                     case 4:
                         break;
