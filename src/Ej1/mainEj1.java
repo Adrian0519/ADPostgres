@@ -10,10 +10,9 @@ public class mainEj1 {
         String user = "postgres";
         String password = "abc123.";
         String url = "jdbc:postgresql://localhost:5432/";
-        String databaseNombre = "listaLibros";
+        String databaseNombre = "listalibros";
 
         Connection connection = DriverManager.getConnection(url, user, password);
-
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("drop database " + databaseNombre);
@@ -25,13 +24,11 @@ public class mainEj1 {
             Statement statement = connection.createStatement();
             statement.executeUpdate("create database " + databaseNombre + " ;");
             System.out.println("exito");
-
             connection.close();
-
         } catch (SQLException e) {
             System.out.println("no se creo las BD de forma correcta");
         }
-        Connection connection2 = DriverManager.getConnection("jdbc:postgresql://localhost:5432/listaLibros", user, password);
+        Connection connection2 = DriverManager.getConnection("jdbc:postgresql://localhost:5432/listalibros", user, password);
         try {
             Statement statement1 = connection2.createStatement();
             statement1.executeUpdate("CREATE SCHEMA objetos");
