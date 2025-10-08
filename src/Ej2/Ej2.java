@@ -1,8 +1,6 @@
 package Ej2;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Ej2 {
@@ -30,6 +28,15 @@ public class Ej2 {
                         connection.close();
                         break;
                     case 1:
+                        String listarSql="select * from equipos";
+                        Statement statement= connection.createStatement();
+                        ResultSet resultSet=statement.executeQuery(listarSql);
+                        while (resultSet.next()){
+                            String nombreEquipo= resultSet.getString("nombre");
+                            String sede=resultSet.getString("sede");
+                            String directorEquipos=resultSet.getString("director");
+                            System.out.println("equipo: " + nombreEquipo + " sede: " + sede + " director: " + directorEquipos);
+                        }
                         break;
                     case 2:
                         break;
