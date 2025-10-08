@@ -37,7 +37,6 @@ public class mainEj1 {
             Statement statement2 = connection2.createStatement();
             statement2.executeUpdate("CREATE TABLE objetos.libros (id serial PRIMARY KEY, titulo VARCHAR, autor objetos.tipo_autor, año_publicacion integer)");
             System.out.println("Creados los libros");
-            connection2.close();
         } catch (SQLException e) {
             System.out.println("Los esquemas ya estaban creados");
         }
@@ -89,7 +88,6 @@ public class mainEj1 {
                         String nombreAutor = resultSet.getString("nombre_autor");
                         String fechaNacimiento = resultSet.getString("fechanacimiento"); // Es VARCHAR, no int
                         int añoPublicacion = resultSet.getInt("año_publicacion");
-
                         System.out.println("Título: " + titulo1 +
                                 " | Autor: " + nombreAutor +
                                 " | Nacimiento: " + fechaNacimiento +
