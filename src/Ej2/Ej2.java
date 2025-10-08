@@ -39,6 +39,16 @@ public class Ej2 {
                         }
                         break;
                     case 2:
+                        String listarPilotosXEquipos = "SELECT pilotos.nombre AS \"Piloto\", equipos.nombre AS \"Equipo\""
+                                + "FROM pilotos "
+                                + "INNER JOIN equipos ON pilotos.equipo_id = equipos.equipo_id;";
+                        Statement statement1= connection.createStatement();
+                        ResultSet resultSet1=statement1.executeQuery(listarPilotosXEquipos);
+                        while (resultSet1.next()){
+                            String piloto = resultSet1.getString("Piloto");
+                            String equipo = resultSet1.getString("Equipo");
+                            System.out.println(equipo + "\t" + piloto);
+                        }
                         break;
                     case 3:
                         break;
