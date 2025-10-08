@@ -95,6 +95,27 @@ public class mainEj1 {
                     }
                     break;
                 case 3:
+                    System.out.println("Dime el id del libro");
+                    int numerito= scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("nombre");
+                    String nombreR=scanner.nextLine();
+                    System.out.println("Titulo");
+                    String tituloR= scanner.nextLine();
+                    System.out.println("fecha");
+                    int fechaR= scanner.nextInt();
+                    String updateSQL="update objetos.libros set titulo=?, autor.nombre_autor=?, autor.fechaNacimiento = ? WHERE id = ?";
+                    PreparedStatement preparedStatement3=connection2.prepareStatement(updateSQL);
+                    preparedStatement3.setString(1,tituloR);
+                    preparedStatement3.setString(2,nombreR);
+                    preparedStatement3.setInt(3,fechaR);
+                    preparedStatement3.setInt(4,numerito);
+                    int confirUpdate= preparedStatement3.executeUpdate();
+                    if (confirUpdate!=0){
+                        System.out.println("actualizado");
+                    }else {
+                        System.out.println("No se actualizo nada");
+                    }
                     break;
                 case 4:
                     String sqlDelete="Delete from objetos.libros where id = ?";
